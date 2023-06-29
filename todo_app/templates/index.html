@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+    {{message}}
+    {% if request.user.is_authenticated %}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+         You are successfully logged in
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        
+    {% else %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        You need to be logged in
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+        
 {% endblock content %}
     
