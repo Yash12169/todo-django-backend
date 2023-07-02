@@ -1,11 +1,15 @@
 from django.shortcuts import render,HttpResponse,redirect
-from todo_app.models import User
+from todo_app.models import User,Todo
 # Create your views here.
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='sign_in')
 def index_view(request):
-    
-    return render(request,'index.html')
+    data={
+        "todo_list" : Todo.objects.filter(user=request.user).order_by("-created_at")
+    }
+    return render(request,'index.html' ,context=data)
 
 
 def sign_up_view(request):
@@ -65,3 +69,25 @@ def sign_in_view(request):
 def sign_out_view(request):
     auth.logout(request)
     return redirect('index')
+
+
+
+
+@login_required(login_url='sign_in')
+def create_todo_view(request):
+    todo_title=request.POST['todotitle']
+    Todo.objects.create(
+        title=todo_title,
+        user=request.user
+    )
+    return redirect("index")
+
+
+
+
+
+
+
+@login_required(login_url='sign_in')
+def delete_todo_view(request,todo_id):
+    pass
