@@ -8,6 +8,6 @@ urlpatterns = [
     path('sign-in/',sign_in_view,name='sign_in'),
     path('sign-out/',sign_out_view,name='sign_out'),
     path('create-todo/',create_todo_view,name='create_todo_view'),
-    path('delete-todo/<int:todo_id>/',delete_todo_view,name='delete_todo_view'),
+    path('delete-todo/',delete_todo_view,name='delete_todo_view'),
 
 ]

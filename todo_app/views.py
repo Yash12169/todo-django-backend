@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
 from todo_app.models import User,Todo
 # Create your views here.
 from django.contrib.auth.models import auth
@@ -89,5 +89,12 @@ def create_todo_view(request):
 
 
 @login_required(login_url='sign_in')
-def delete_todo_view(request,todo_id):
-    pass
+def delete_todo_view(request):
+    if request.method=='POST':
+        todo_id=request.POST.get('todo_id')
+        todo=get_object_or_404(Todo,id=todo_id)
+        todo.delete()
+        return redirect('index')
+
+    else:
+        return redirect('index')
