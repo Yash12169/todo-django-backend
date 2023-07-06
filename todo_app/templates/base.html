@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+ 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>TodoList</title>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'favicon.webp' %}" type="image/x-icon">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -25,29 +28,84 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
     <style>
-
+      .head {
+        text-align: center;
+        color: #9191bb;
+        margin-top:190px;
+        margin-bottom: 50px;
+        font-size: 32px;
+        font-family: 'Roboto Mono', monospace;
+      }
+      .head h1{
+        font-size: 82px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Roboto Mono', monospace;
+      }
+      body {
+        background-color: #1e2431;
+      }
+      .butt {
+        height: 53px;
+        width: 118px;
+        margin: 10px;
+        border: 1px solid white;
+        border-radius: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7a7ad0;
+        color: #2f2f43;
+        font-weight:600;
+        font-size: 18px;
+        
+      }
+      .butt:hover{
+        text-decoration: none;
+        color: #2f2f43;
+        background-color: #6b6bb7;
+        border: 1px ;
+      }
+      footer{
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        align-items:flex-end;
+        color: #9191bb;
+        border: 2px solid black;
+      }
     </style>
   </head>
   <body>
     <!-- navbar -->
-   
-        <form class="form-inline my-2 my-lg-0">
-          {% if request.user.is_authenticated %}
-          hi {{request.user.username}}
-          <a class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/sign-out">
-            Log out
-          </a>
-          {% else %}
-          <a class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/sign-up">
-            sign up
-          </a>
-          <a class="btn btn-outline-success my-2 my-sm-0" type="submit" href="/sign-in">
-            sign in
-          </a>
-          {% endif %}
-        </form>
 
+    {% if request.user.is_authenticated == False %}
+
+    <div class="head">
+      <h1>Welcome to TodoList</h1>
+      <p>Manage your tasks simply and effectively</p>
+    </div>
+
+    <div class="container">
+      <form class="form-inline my-2 my-lg-0">
+        <a class="butt" type="submit" href="/sign-up"> Sign up </a>
+        <a class="butt" type="submit" href="/sign-in"> Log in </a>
+      </form>
+    </div>
+    {% endif %} 
     {% block content %} {% endblock content %}
+
+
+
+    <footer>
+      Made with ❤️ by Yash
+    </footer>
   </body>
 </html>

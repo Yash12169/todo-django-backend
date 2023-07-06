@@ -6,7 +6,14 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
+    hi {{request.user.username}}
+    <a
+      class="butt"
+      type="submit"
+      href="/sign-out"
+    >
+      Log out
+    </a>
 <!-- todo main matter -->
 <h1>welcome to django todo</h1>
 
@@ -49,6 +56,11 @@
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+  
+</div>
+<div class="head">
+  <h1>Welcome to TodoList</h1>
+  <p>Sign up or Log in to continue</p>
 </div>
 {% endif %} 
 {% endblock content %}
