@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
- 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoList</title>
     {% load static %}
-    <link rel="shortcut icon" href="{% static 'favicon.webp' %}" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="{% static 'favicon.webp' %}"
+      type="image/x-icon"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -28,26 +31,29 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
     <style>
       .head {
         text-align: center;
         color: #9191bb;
-        margin-top:190px;
+        margin-top: 50px;
         margin-bottom: 50px;
         font-size: 32px;
-        font-family: 'Roboto Mono', monospace;
+        font-family: "Roboto Mono", monospace;
       }
-      .head h1{
+      .head h1 {
         font-size: 82px;
       }
       .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-family: 'Roboto Mono', monospace;
+        font-family: "Roboto Mono", monospace;
       }
       body {
         background-color: #1e2431;
@@ -63,24 +69,183 @@
         align-items: center;
         background-color: #7a7ad0;
         color: #2f2f43;
-        font-weight:600;
+        font-weight: 600;
         font-size: 18px;
-        
       }
-      .butt:hover{
+      .butt:hover {
         text-decoration: none;
         color: #2f2f43;
         background-color: #6b6bb7;
-        border: 1px ;
+        border: 1px;
       }
-      footer{
+      .form-control {
+        border-radius: 20px;
+        color: #2f2f43;
+        width: 400px;
+      }
+      .head1{
+        margin-bottom: 30px;
+      }
+      .signcont {
         display: flex;
-        margin: auto;
+        background-color: #1e2431;
         justify-content: center;
-        align-items:flex-end;
-        color: #9191bb;
-        border: 2px solid black;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-family: "Roboto Mono", monospace;
       }
+      .block {
+        background-color: #7a7ad0;
+        display: inline-block;
+        border-radius: 20px;
+        padding: 15px;
+        font-weight: 500;
+        box-shadow: 1px -2px 32px -13px whitesmoke;
+      }
+      .butt1 {
+        background-color: #0d6efd;
+        border-radius: 20px;
+        width: 100%;
+        border: 1px solid white;
+        font-weight: 500;
+        height: 32px;
+        color: white;
+      }
+      .big {
+        margin-bottom: 30px;
+        display: flex;
+        background-color: #1e2431;
+        justify-content: center;
+        margin-top: 30px;
+        font-family: "Roboto Mono", monospace;
+      }
+      .small {
+        background-color: #7a7ad0;
+        display: inline-block;
+        border-radius: 20px;
+        padding: 15px;
+        font-weight: 500;
+        box-shadow: 1px -2px 32px -13px whitesmoke;
+        font-size: 15px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      .footer {
+        background-color: #1e2431;
+        padding: 10px;
+        text-align: center;
+        margin-top: auto;
+        color: #7a7ad0;
+      }
+      .index{
+        color:#9191bb ;
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+        font-family: "Roboto Mono", monospace;
+      }
+      .lhead{
+        display: flex;
+        width: 100%;
+        padding: 35px;
+        justify-content: flex-end;
+        text-align: center;
+        
+        justify-content: space-between;
+      }
+      .buti{
+        height: 36px;
+        width: 100px;
+        border: 1px solid white;
+        border-radius: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #7a7ad0;
+        color: #2f2f43;
+        font-weight: 600;
+        font-size: 18px;
+        margin-left: 0 auto;
+
+      }
+      .f1{
+        margin-bottom: 30px;
+        display: flex;
+        background-color: #1e2431;
+        justify-content: center;
+        margin-top: 30px;
+        font-family: "Roboto Mono", monospace;
+      }
+      .btn{
+        border-radius: 20px;
+      }
+  
+      .ib1{
+        background-color: #7a7ad0;
+        display: inline-block;
+        border-radius: 20px;
+        padding: 15px;
+        font-weight: 500;
+        font-size: 15px;
+        color: #1e2431;
+        width: 60%;
+        text-align: center;
+        padding: 3%;
+        box-shadow: 1px -2px 32px -13px whitesmoke;
+      }
+      .search{
+        margin: 5px 2px;
+        width: 100%;
+        
+      }
+      .s{
+        margin-right: 656px;
+        font-weight: 500;
+      }
+      .buta{
+        margin: 0 auto;
+        flex-grow: 1;
+      }
+      .buti:hover{
+
+        text-decoration: none;
+        color: #2f2f43;
+        background-color: #6b6bb7;
+        border: 1px;
+      }
+      
+      .container1{
+          background-color:#6363ac ;
+          display:flex;
+          justify-content: space-evenly;
+          border-radius: 20px;
+          padding: 10px;
+          font-weight: 600;
+          flex-direction: column;
+          
+      }
+      tr.cont2{
+        
+        margin: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .butt3{
+        margin-bottom: 5%;
+        border: 1px solid white;
+      }
+      .butt2{
+       
+        margin-left: auto;
+      }
+      @media (max-height: 30px) {
+            .container{
+              background-color:#000000 ;
+            }
+          }
     </style>
   </head>
   <body>
@@ -99,13 +264,8 @@
         <a class="butt" type="submit" href="/sign-in"> Log in </a>
       </form>
     </div>
-    {% endif %} 
-    {% block content %} {% endblock content %}
+    {% endif %} {% block content %} {% endblock content %}
 
-
-
-    <footer>
-      Made with ❤️ by Yash
-    </footer>
+    <footer class="footer">Made with ❤️ by Yash</footer>
   </body>
 </html>

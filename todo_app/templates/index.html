@@ -1,66 +1,70 @@
-{% extends 'base.html' %} {% block content %} {{message}} 
-{% if request.user.is_authenticated %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  You are successfully logged in
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-    hi {{request.user.username}}
-    <a
-      class="butt"
-      type="submit"
-      href="/sign-out"
-    >
-      Log out
-    </a>
-<!-- todo main matter -->
-<h1>welcome to django todo</h1>
+{% extends 'base.html' %} {% block content %}
+<div class="index">
+  {{message}} {% if request.user.is_authenticated %}
 
-<form action="{% url 'create_todo_view' %}" method="POST">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="todotitle">enter todo title</label>
-    <input
-      type="text"
-      class="form-control"
-      id="todotitle"
-      name="todotitle"
-      placeholder="add you todo here..."
-    />
+  <div class="lhead">
+    <h1 class="buta">Welcome {{request.user.username}}</h1>
+    <a class="buti" type="submit" href="/sign-out"> Log out </a>
   </div>
-  <button type="submit" class="btn btn-primary">add todo</button>
-</form>
 
-<table>
-  <tbody>
-    {% for todo in todo_list %}
-    <tr>
-      <td>{{todo.title}}</td>
-      <td>
-      <form method="POST" action="{% url 'delete_todo_view' %}">
+  <!-- todo main matter -->
+  <div class="f1">
+    <div class="ib1">
+      <h1 class="head1">Add your todo</h1>
+
+      <form action="{% url 'create_todo_view' %}" method="POST">
         {% csrf_token %}
-        <input type="hidden" name="todo_id" value="{{ todo.id }}">
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <div class="form-group">
+          <label for="todotitle" class="s">enter todo title</label>
+          <input
+            type="text"
+            class="form-control search"
+            id="todotitle"
+            name="todotitle"
+            placeholder="add you todo here..."
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary butt3">add todo</button>
       </form>
-    </td>
-    </tr>
-
-    {%endfor%}
-  </tbody>
-</table>
-
-{% else %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  You need to be logged in
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  
+      <div class="container1">
+      <table>
+        <tbody>
+          {% for todo in todo_list %}
+          
+          
+              <tr class="cont2">
+                <td class="loop">{{todo.title}}</td>
+                <td>
+                  <form method="POST" action="{% url 'delete_todo_view' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_id" value="{{ todo.id }}" />
+                    <button type="submit" class="btn btn-danger butt2">
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+      {% else %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        You need to be logged in
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
-<div class="head">
-  <h1>Welcome to TodoList</h1>
-  <p>Sign up or Log in to continue</p>
-</div>
-{% endif %} 
-{% endblock content %}
+
+{% endblock %}
