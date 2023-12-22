@@ -1,8 +1,13 @@
 from django.shortcuts import render,HttpResponse,redirect,get_object_or_404
+from rest_framework.response import Response
 from todo_app.models import User,Todo
 # Create your views here.
 from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView,DestroyAPIView
+from .serializers import ReadTodoListSerializer
+from time import sleep,time
 
 @login_required(login_url='sign_in')
 def index_view(request):
@@ -90,6 +95,7 @@ def create_todo_view(request):
 
 @login_required(login_url='sign_in')
 def delete_todo_view(request):
+
     if request.method=='POST':
         todo_id=request.POST.get('todo_id')
         todo=get_object_or_404(Todo,id=todo_id)
@@ -98,3 +104,31 @@ def delete_todo_view(request):
 
     else:
         return redirect('index')
+    
+
+
+class DrfListView(ListAPIView):
+    queryset=Todo.objects.all()
+    serializer_class = ReadTodoListSerializer
+    pagination_class = None
+    def list(self, request, *args, **kwargs):
+        # time.sleep(5)
+        return super().list(request, *args, **kwargs)
+
+class DrfCreateView(APIView):
+    def post(self,request):
+        title = request.data.get('title')
+        todo_object = Todo.objects.create(
+            title=title
+        )
+        response_data = ReadTodoListSerializer(instance=todo_object).data
+        return Response(response_data)
+
+
+class DrfDeleteView(APIView):
+   def post(self,request):
+        todo_id = request.data.get('todo_id')
+        todo_object = Todo.objects.get(pk=todo_id)
+        todo_object.delete()
+      
+        return Response("Todo Deleted")
